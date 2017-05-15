@@ -6,6 +6,7 @@ function initMap() {
 		center: {lat: -34.397, lng: 150.644},
 		zoom: 6
 	});
+	
 	infoWindow = new google.maps.InfoWindow;
 
 	// HTML5 geolocation
