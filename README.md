@@ -8,6 +8,9 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 # Setup and Installation
 
 ### Python Dependencies
+
 NeedleNet runs on Python 2.7
+
 To install python library dependencies, run the following:
+
 	pip install -r requirements.txt
