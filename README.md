@@ -10,6 +10,7 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 ### Python Dependencies
 
 NeedleNet runs on Python 3.6
+
 OpenSSL version 1.X or greater required
 
 To install python library dependencies, run the following:
