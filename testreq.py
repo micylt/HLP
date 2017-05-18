@@ -1,6 +1,5 @@
 # script for requesting JSON formatted data from given URL
 # *only* used for testing request functionality
-
 import requests
 import json
 
@@ -18,6 +17,5 @@ def get(url):
 if __name__ == '__main__':
     url = "https://locator.aids.gov/data?lat=47.606&long=-122.332&distance=1"
     data = get(url)
-
     if data:
         print(json.dumps(data, indent=4, sort_keys=True))
