@@ -9,7 +9,11 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 
 ### Python Dependencies
 
-NeedleNet runs on Python 3.6
+NeedleNet runs on Python 3.6 and utilizes the Flask framework.
+
+All html files must go in the `templates` directory.
+
+All JavaScript and CSS files must go in the `static` directory.
 
 OpenSSL version 1.X or greater required
 
