@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # NeedleNet Flask server
 from flask import Flask, render_template, request, redirect, Response, jsonify
 import requests
