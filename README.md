@@ -7,8 +7,6 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 
 # Setup and Installation
 
-### Python Dependencies
-
 NeedleNet runs on Python 3.6 and utilizes the Flask framework.
 
 All html files must go in the `templates` directory.
@@ -16,6 +14,9 @@ All html files must go in the `templates` directory.
 All JavaScript and CSS files must go in the `static` directory.
 
 OpenSSL version 1.X or greater required
+
+
+### Python Dependencies
 
 To install python library dependencies, run the following:
 
