@@ -32,7 +32,7 @@ def get_clinic_locations(lat, lon, dist):
     start_time = time.time()
     print("getting clinic locations...")
     res = requests.get(url, stream=True, allow_redirects=False)
-    print('res1 complete')
+    print('response complete')
     print("--- %s seconds ---" % (time.time() - start_time))
 
     data = res.json()
