@@ -13,7 +13,7 @@ All html files must go in the `templates` directory.
 
 All JavaScript and CSS files must go in the `static` directory.
 
-OpenSSL version 1.X or greater required
+OpenSSL version 1.X or greater required.
 
 
 ### Python Dependencies
