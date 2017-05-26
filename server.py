@@ -45,7 +45,7 @@ def get_clinic_locations(lat, lon, dist):
 def worker():
     # read json + reply
     res = request.get_json()
-    if res is not None:
+    if res:
         data = get_clinic_locations(res['lat'], res['lon'], res['dist'])
         return jsonify(data)
 
