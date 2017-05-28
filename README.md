@@ -15,6 +15,7 @@ All JavaScript and CSS files must go in the `static` directory.
 
 OpenSSL version 1.X or greater required.
 
+Google API Key: AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs
 
 ### Python Dependencies
 
