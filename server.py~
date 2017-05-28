@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 """ NeedleNet Flask Server """
 from flask import Flask, render_template, request, redirect, Response, jsonify

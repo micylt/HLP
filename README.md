@@ -7,11 +7,17 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 
 # Setup and Installation
 
+NeedleNet runs on Python 3.6 and utilizes the Flask framework.
+
+All html files must go in the `templates` directory.
+
+All JavaScript and CSS files must go in the `static` directory.
+
+OpenSSL version 1.X or greater required.
+
+Google API Key: AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs
+
 ### Python Dependencies
-
-NeedleNet runs on Python 3.6
-
-OpenSSL version 1.X or greater required
 
 To install python library dependencies, run the following:
 
