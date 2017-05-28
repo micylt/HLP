@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# NeedleNet Flask server
+""" NeedleNet Flask Server """
 from flask import Flask, render_template, request, redirect, Response, jsonify
 import requests
 import requests_cache
