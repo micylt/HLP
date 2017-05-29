@@ -3,8 +3,8 @@ var map, infoWindow;
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -34.397, lng: 150.644},
-		zoom: 6
+		center: {lat: 48.752, lng: -122.479},
+		zoom: 10
 	});
 
 	infoWindow = new google.maps.InfoWindow;
@@ -18,6 +18,7 @@ function initMap() {
 			};
 
 			infoWindow.setPosition(pos);
+			console.log("Hogwarts");
 			infoWindow.setContent('Location found.');
 			infoWindow.open(map);
 

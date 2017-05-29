@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="initial-scale=10.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles/style.css') }}">
-    
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -15,14 +15,16 @@
 
     <script>
       function geocode_input() {
-      var x = document.getElementById("address_form");
-      var old = x.elements[0].value;
-      var replaced = old.replace(/\s/g, '+');
-      var request = "https://maps.googleapis.com/maps/api/geocode/json?address=" + replaced + "&key=AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs";
-      var geocode = $.getJSON(request);
+          var x = document.getElementById("address_form");
+          var old = x.elements[0].value;
+          var replaced = old.replace(/\s/g, '+');
+          var request = "https://maps.googleapis.com/maps/api/geocode/json?address=" + replaced + "&key=AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs";
+          var geocode = $.getJSON(request, function(data) {
+            console.log(JSON.stringify(data));
+          });
       }
     </script>
-    
+
 
   </head>
   <body>
@@ -40,7 +42,7 @@
     <!-- Address searching/updating maps -->
     <form id="address_form" onsubmit="return geocode_input()">
       <div class="form-group">
-	<input type="text" class="form-control" id="address" placeholder="Address">
+	<input type="text" class="form-control" id="address" placeholder="Enter street address">
       </div>
       <div class="input-group-btn">
 	<button type="submit" class="btn btn-default">
