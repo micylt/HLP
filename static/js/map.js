@@ -4,7 +4,12 @@ var map, infoWindow;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: -34.397, lng: 150.644},
-		zoom: 6
+		zoom: 6,
+		mapTypeContol: true,
+		mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.BOTTOM_CENTER
+          }
 	});
 
 	infoWindow = new google.maps.InfoWindow;
