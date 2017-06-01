@@ -25,15 +25,26 @@ def map():
     return render_template('view.html')
 
 
-def get_clinic_locations(lat, lon, dist):
+def get_clinic_locations(lat, lng, dist):
     """ request clinic data from aids.gov w/ given latitude, longitude and distance """
     lat = round(lat, 3)
-    lon = round(lon, 3)
-    url = "https://locator.aids.gov/data?lat={}&long={}&distance={}".format(lat, lon, dist)
+    lng = round(lng, 3)
+    url = "https://locator.aids.gov/data?lat={}&long={}&distance={}".format(lat, lng, dist)
+    sleep = True
 
     start_time = time.time()
     print("getting clinic locations...")
-    res = requests.get(url, stream=True, allow_redirects=False)
+    while sleep:
+        try:
+            res = requests.get(url, stream=True, allow_redirects=False)
+            sleep = False
+        except:
+            print("connection refused by aids.gov server...")
+            print("retrying after sleeep...")
+            time.sleep(5)
+            sleep = True
+            continue
+
     print('response complete')
     print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -46,7 +57,7 @@ def worker():
     # read json + reply
     res = request.get_json()
     if res:
-        data = get_clinic_locations(res['lat'], res['lon'], res['dist'])
+        data = get_clinic_locations(res['lat'], res['lng'], res['dist'])
         return jsonify(data)
 
     return 'error'
