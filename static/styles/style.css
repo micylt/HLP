@@ -24,6 +24,22 @@ html, body {
   background-color: rgba(0,0,0,.7);
 }
 
+.navbar-nav a{
+    color: white;
+}
+
+.navbar-nav a:hover{
+    color: #333333;
+}
+
+.navbar-brand{
+    color: white;
+}
+
+.navbar-brand:hover{
+    color: #b3b3b3;
+}
+
 #map {
     height: 100%;
     width: 100%;

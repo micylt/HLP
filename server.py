@@ -25,6 +25,11 @@ def map():
     return render_template('view.html')
 
 
+@app.route("/contacts")
+def contacts():
+    return render_template('contacts.html')
+
+
 def get_clinic_locations(lat, lng, dist):
     """ request clinic data from aids.gov w/ given latitude, longitude and distance """
     lat = round(lat, 3)
@@ -36,7 +41,7 @@ def get_clinic_locations(lat, lng, dist):
     print("getting clinic locations...")
     while sleep:
         try:
-            res = requests.get(url, stream=True, allow_redirects=False)
+            res = requests.get(url, stream=True, allow_redirects=True)
             sleep = False
         except:
             print("connection refused by aids.gov server...")
@@ -48,7 +53,12 @@ def get_clinic_locations(lat, lng, dist):
     print('response complete')
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    data = res.json()
+    try:
+        data = res.json()
+    except Exception as ex:
+        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+        message = template.format(type(ex).__name__, ex.args)
+        print(message)
     return data
 
 
