@@ -7,7 +7,7 @@ We estimate that some narcotics addicts do not own smart phones; however, public
 
 # Setup and Installation
 
-NeedleNet runs on Python 3.6 and utilizes the Flask framework.
+HLP runs on Python 3.6 and utilizes the Flask framework.
 
 All html files must go in the `templates` directory.
 
