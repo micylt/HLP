@@ -1,6 +1,5 @@
 #!/usr/local/bin/python3
-
-""" NeedleNet Flask Server """
+""" HLP Flask Server """
 from flask import Flask, render_template, request, redirect, Response, jsonify
 import requests
 import requests_cache
@@ -16,12 +15,6 @@ requests_cache.install_cache('aid.gov_cache', backend='sqlite')
 # default route
 @app.route("/")
 def main():
-    return render_template('test.html')
-
-
-# redirect (e.g. http://localhost:5000/map)
-@app.route("/map")
-def map():
     return render_template('view.html')
 
 

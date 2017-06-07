@@ -1,11 +1,8 @@
-// script for calculating current geolocation
 var map, marker, myCenter;
 
+// Displays markers of given clinic data on map
 var clinicCallback = function geocodeAddress(geocoder, resultsMap, clinicResults) {
-  var providers;
-  var address;
-  var phoneNumber;
-  var providerUrl;
+  var providers, address, phoneNumber, providerUrl, lat, lng;
   console.log('running clinic callback...');
   console.log(clinicResults);
   var services = clinicResults['services'];
@@ -15,16 +12,15 @@ var clinicCallback = function geocodeAddress(geocoder, resultsMap, clinicResults
 
 	  var infowindow = new google.maps.InfoWindow({});
 	  var marker, content, j;
-
 	  providers = services[i]['providers'];
+
 	  for (j = 0; j < providers.length; j++) {
 		  provider = providers[j];
 		  address = provider['streetAddress'] + ", " + provider['locality'] + ", " + provider['region'];
 		  providerUrl = provider['link'];
 		  phoneNumber = provider['telephone'];
-		  console.log(address);
-		  var lat = provider['point']['lat'];
-		  var lng = provider['point']['long'];
+		  lat = provider['point']['lat'];
+		  lng = provider['point']['long'];
 
 		  content = '<div id="content">' +
 					'<div id="siteNotice">' +
@@ -78,7 +74,7 @@ function initMap() {
 		clinicRequest(geoCords, geocoder, map, clinicCallback);
     });
 
-	// HTML5 geolocation
+	// calculate current location
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
@@ -100,7 +96,6 @@ function initMap() {
 	}
 }
 
-// handle errors
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	infoWindow.setPosition(pos);
 	infoWindow.setContent(browserHasGeolocation ?
