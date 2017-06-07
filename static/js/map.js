@@ -1,72 +1,57 @@
 // script for calculating current geolocation
-var map, infoWindow, marker, myCenter;
+var map, marker, myCenter;
 
 var clinicCallback = function geocodeAddress(geocoder, resultsMap, clinicResults) {
   var providers;
   var address;
-  var providerCount = 0;
-  var markers = [];
-  var contents = [];
-  var infowindows = [];
+  var phoneNumber;
+  var providerUrl;
   console.log('running clinic callback...');
-  // var address = document.getElementById('address').value;
   console.log(clinicResults);
   var services = clinicResults['services'];
   for (var i = 0; i < services.length - 1; i++) {
 	  console.log('result: ' + i);
 	  console.log(services[i]);
 
+	  var infowindow = new google.maps.InfoWindow({});
+	  var marker, content, j;
+
 	  providers = services[i]['providers'];
-	  for (var j = 0; j < providers.length; j++) {
+	  for (j = 0; j < providers.length; j++) {
 		  provider = providers[j];
 		  address = provider['streetAddress'] + ", " + provider['locality'] + ", " + provider['region'];
+		  providerUrl = provider['link'];
+		  phoneNumber = provider['telephone'];
 		  console.log(address);
-		  geocoder.geocode({'address': address}, function(results, status) {
-		    if (status === 'OK') {
-				contents[providerCount] = '<div id="content">'+
-			      '<div id="siteNotice">'+
-			      '</div>'+
-			      '<h6 id="firstHeading" class="firstHeading">' + provider['title'] + '</h6>'+
-			      '<div id="bodyContent">'+
-			      '<ul>' +
-			  	  '<li>' + address + '</li>' +
-			  	  '<li>(360)676-6177</li>' +
-			  	  '<li><a href="http://unitycarenw.org/">unitycarenw.org</a></li>' +
-			      '</ul>' +
-			      '</div>'+
-			      '</div>';
+		  var lat = provider['point']['lat'];
+		  var lng = provider['point']['long'];
 
-			  markers[providerCount] = new google.maps.Marker({
-			    position: results[0].geometry.location,
-			    map: resultsMap,
-			    title: 'HLP'
-			  });
+		  content = '<div id="content">' +
+					'<div id="siteNotice">' +
+					'</div>' +
+					'<h6 id="firstHeading" class="firstHeading">' + provider['title'] + '</h6>' +
+					'<div id="bodyContent">' +
+					'<ul>' +
+					'<li>' + address + '</li>' +
+					'<li>' + phoneNumber + '</li>' +
+					'<li><a href="' + providerUrl + '">' + providerUrl + '</a></li>' +
+					'</ul>' +
+					'</div>' +
+					'</div>';
 
-			  markers[providerCount].index = providerCount;
-
-			  infowindows[providerCount] = new google.maps.InfoWindow({
-			    content: contents[providerCount],
-			    maxWidth: 200
-			  });
-
-			//   google.maps.event.addListener(markers[j], 'click', function () {
-    		// 		alert(markers[this.id].position);
-			//   });
-			  google.maps.event.addListener(markers[providerCount], 'click', function() {
-			        infowindows[this.index].open(resultsMap, markers[this.index]);
-		      });
-		    //   resultsMap.setCenter(results[0].geometry.location);
-		    //   var marker = new google.maps.Marker({
-		    //     map: resultsMap,
-		    //     position: results[0].geometry.location
-		    //   });
-		    } else {
-		    //   alert('Geocode was not successful for the following reason: ' + status);
-		    }
+		  marker = new google.maps.Marker({
+			  position: new google.maps.LatLng(lat, lng),
+			  map: resultsMap
 		  });
-		  providerCount++;
+
+		  google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow, j) {
+			  return function() {
+				  infowindow.setContent(content);
+				  infowindow.open(resultsMap, marker);
+			  }
+		  })(marker, content, infowindow, j));
 	  }
-  }
+   }
 }
 
 function initMap() {
@@ -84,7 +69,7 @@ function initMap() {
 	});
 
 	var geocoder = new google.maps.Geocoder();
-	infoWindow = new google.maps.InfoWindow;
+	var infoWindow = new google.maps.InfoWindow({});
 
 	// detect address search submit
 	document.getElementById('submit').addEventListener('click', function() {
@@ -127,7 +112,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 /* Used for retrieving address data (i.e. lat, lng, etc.) from Google Map API */
 function geocode_input(address) {
 	console.log("geocode running...");
-	// var old = address.elements[0].value;
 	var replaced = address.replace(/\s/g, '+');
 	var request = "https://maps.googleapis.com/maps/api/geocode/json?address=" + replaced + "&key=AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs";
 	var pos = {};
@@ -144,13 +128,11 @@ function geocode_input(address) {
 			pos.lat = result.results[0].geometry.location.lat;
 			pos.lng = result.results[0].geometry.location.lng;
 			pos.dist = 10;
-			// logging for testing
 			console.log(JSON.stringify(pos));
 		}
 	});
 	return pos;
 }
-
 
 // retrieve clinics within radius of given position
 function clinicRequest(pos, geocoder, map, clinicCallback) {
