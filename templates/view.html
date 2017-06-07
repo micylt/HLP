@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Geolocation</title>
+    <title>HLP</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 <body>
-    <!-- Navbar (Home, Add Locations, Contact, About  |   sidebar button thingy) -->
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,7 +22,6 @@
                 </button>
                 <a class="navbar-brand" href="#">HLP</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -31,27 +29,46 @@
                     <li id="locations"><a href="#">Add Locations</a></li>
                     <li id="contact"><a href="{{ url_for('contacts') }}"> Contact </a></li>
                 </ul>
+                <form class="navbar-form navbar-left">
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <button style= "margin-top:15%;margin-right:10%;padding-top:15%;padding-bottom:15%;";class="navbar-toggler pull-xs-right" id="navbarSideButton" type="button" >
+                        &#9776;
+                    </button>
+                    <ul class="navbar-side" id="navbarSide">
+                        <li class="navbar-side-item">
+                            <!-- searchbar -->
+                            <!-- Address searching/updating maps -->
+                            <form id="navbar-form" class="address-form" onsubmit="geocode_input()">
+                                <div class="form-group" role="search">
+                                    <input id="address" type="textbox" style="width:88%;display:inline;float:left;" class="form-control" placeholder="Enter street address">
+                                    <!--<div class="input-group-btn"> -->
+                                    <button id="submit" type="submit" style="width:12%;display:inline-block;float:right;"class="btn btn-default">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                    <label><input type="checkbox" value = "mentalHealth">Mental Health</label><br>
+                                    <label><input type="checkbox" value = "clinic">Clinics</label><br>
+                                    <label><input type="checkbox" value = "testing">Testing</label><br>
+                                    <label><input type="checkbox" value = "substanceAbuse">Substance Abuse</label><br>
+                                    <label><input type="checkbox" value = "housing">Housing</label>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </ul>
             </div>
         </div>
+        <div class="overlay"></div>
     </nav>
+<div id="map"></div>
 
-    <!-- Address searching/updating maps -->
-    <div id="floating-panel">
-      <input id="address" type="textbox" value="">
-      <input id="submit" type="button" value="Geocode">
-    </div>
-    <div id="map"></div>
-
-    <!-- Sidebar: location, filters -->
-    <!-- for location: split on spaces, turn request into https to geocoding api, send our server the appropriate lat/long -->
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/addrSearch.js') }}"></script> -->
-    <!-- Google Map "code" -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs&callback=initMap"></script>
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<!-- Google Map "code" -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs&callback=initMap"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
 </body>
 </html>
