@@ -1,4 +1,4 @@
-# NeedleNet
+# Harm Lessening and Prevention (HLP)
 
 With our system, we plan to solve the problem of addicts not knowing when and where to go for needle disposal and replacement. As a result of this, we hope to see a decline in the spreading of blood transmitted diseases such has hepatitis and HIV. This is something addicts should care about because not only is this helping themselves in the fact that they will be at lower risk of contracting a blood transmitted disease, but also other users around them and the environment.
 
