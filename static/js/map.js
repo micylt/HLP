@@ -40,12 +40,12 @@ var clinicCallback = function geocodeAddress(geocoder, resultsMap, clinicResults
 			  map: resultsMap
 		  });
 
-		  google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow, j) {
+		  google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
 			  return function() {
 				  infowindow.setContent(content);
 				  infowindow.open(resultsMap, marker);
 			  }
-		  })(marker, content, infowindow, j));
+		  })(marker, content, infowindow));
 	  }
    }
 }
