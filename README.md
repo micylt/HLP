@@ -22,3 +22,11 @@ Google API Key: AIzaSyDj0h-T1onIDApJ9DHhP8-jfs0I26JcvLs
 To install python library dependencies, run the following:
 
 	pip3 install -r requirements.txt
+
+To run the webserver, open up the terminal and start the server with either
+
+        ./server.py or python3 server.py
+
+Then go to any browser (chrome or firefox recommended) and type
+
+     	localhost:5000/
